@@ -1,48 +1,64 @@
 'use strict';
 
-(function () {
-  var enterModule = require('react-hot-loader').enterModule;
-
-  enterModule && enterModule(module);
-})();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-}();
-
-(function () {
-  var enterModule = require('react-hot-loader').enterModule;
-
-  enterModule && enterModule(module);
-})();
-
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-var EspLogger = function () {
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+var EspLogger =
+/*#__PURE__*/
+function () {
   function EspLogger() {
     var _this = this;
 
@@ -73,11 +89,15 @@ var EspLogger = function () {
       _this.types.forEach(function (type) {
         _this[type] = function (info) {
           if (typeof info === 'string') {
-            return _this.log({ message: info,
-              type: type });
+            return _this.log({
+              message: info,
+              type: type
+            });
           }
-          return _this.log(_extends({}, info, {
-            type: type }));
+
+          return _this.log(_objectSpread({}, info, {
+            type: type
+          }));
         };
       });
     };
@@ -99,13 +119,16 @@ var EspLogger = function () {
     };
 
     this.clearAllFilters = function () {
-      _this.clearTypeFilters();_this.clearNamespaceFilters();
+      _this.clearTypeFilters();
+
+      _this.clearNamespaceFilters();
     };
 
     this.isPassingFilter = function (filters, value) {
       if (filters.length > 0) {
         return filters.indexOf(value) !== -1;
       }
+
       return true;
     };
 
@@ -119,7 +142,6 @@ var EspLogger = function () {
           namespaceFilter = _this.namespaceFilter,
           silent = _this.silent,
           typeFilter = _this.typeFilter;
-
       return !silent && isPassingFilter(namespaceFilter, info.label) && isPassingFilter(typeFilter, info.type) && !isPrivate(info.private);
     };
 
@@ -142,7 +164,7 @@ var EspLogger = function () {
     this.getTimer = function (label) {
       _this.log({
         label: label,
-        message: 'Current timer: ' + _this.timers[label] + 'ms'
+        message: "Current timer: ".concat(_this.timers[label], "ms")
       });
     };
 
@@ -156,29 +178,27 @@ var EspLogger = function () {
 
     this.formatDefault = function (info) {
       var defaultLog = _this.defaultLog;
-
-      return typeof info === 'string' ? _extends({}, defaultLog, {
-        message: info }) : _extends({}, defaultLog, info);
+      return typeof info === 'string' ? _objectSpread({}, defaultLog, {
+        message: info
+      }) : _objectSpread({}, defaultLog, info);
     };
 
     this.formatter = function (info) {
       var label = info.label,
           message = info.message,
           trace = info.trace;
-
-      return '%c[' + label + '] ' + message + ' ' + (trace ? '- ' + _this.addTimer(label) : '');
+      return "%c[".concat(label, "] ").concat(message, " ").concat(trace ? '- ' + _this.addTimer(label) : '');
     };
 
     this.colorize = function (type) {
       var color = _this.colors[type] || _this.colors.debug;
-      return 'color: ' + color;
+      return "color: ".concat(color);
     };
 
     this.log = function (info) {
       var colorize = _this.colorize,
           formatter = _this.formatter,
           formatDefault = _this.formatDefault;
-
       info = formatDefault(info);
 
       if (_this.filterMessage(info)) {
@@ -191,85 +211,32 @@ var EspLogger = function () {
   }
 
   _createClass(EspLogger, [{
-    key: 'on',
-
+    key: "on",
     // Turn Logger on and off
     value: function on() {
       this.silent = false;
     }
   }, {
-    key: 'off',
+    key: "off",
     value: function off() {
       this.silent = true;
     }
   }, {
-    key: 'persist',
+    key: "persist",
     value: function persist() {
       localStorage.setItem('turnLoggerOn', true);
       this.on();
     }
   }, {
-    key: 'halt',
+    key: "halt",
     value: function halt() {
       localStorage.removeItem('turnLoggerOn');
       this.off();
-    }
+    } // Filters
 
-    // Filters
-
-    // Timers
-
-
-    // Formatting and printing
-
-  }, {
-    key: '__reactstandin__regenerateByEval',
-    // @ts-ignore
-    value: function __reactstandin__regenerateByEval(key, code) {
-      // @ts-ignore
-      this[key] = eval(code);
-    }
   }]);
 
   return EspLogger;
 }();
 
-var _default = EspLogger;
-exports.default = _default;
-;
-
-(function () {
-  var reactHotLoader = require('react-hot-loader').default;
-
-  var leaveModule = require('react-hot-loader').leaveModule;
-
-  if (!reactHotLoader) {
-    return;
-  }
-
-  reactHotLoader.register(EspLogger, 'EspLogger', '/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/src/EspLogger.js');
-  reactHotLoader.register(_default, 'default', '/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/src/EspLogger.js');
-  leaveModule(module);
-})();
-
-;
-;
-
-(function () {
-  var reactHotLoader = require('react-hot-loader').default;
-
-  var leaveModule = require('react-hot-loader').leaveModule;
-
-  if (!reactHotLoader) {
-    return;
-  }
-
-  reactHotLoader.register(_extends, "_extends", "/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/es/EspLogger.js");
-  reactHotLoader.register(_createClass, "_createClass", "/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/es/EspLogger.js");
-  reactHotLoader.register(_classCallCheck, "_classCallCheck", "/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/es/EspLogger.js");
-  reactHotLoader.register(EspLogger, "EspLogger", "/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/es/EspLogger.js");
-  reactHotLoader.register(_default, "_default", "/Users/fernandosalas/Sites/Espressive/app_web/packages/esp-util-logging/es/EspLogger.js");
-  leaveModule(module);
-})();
-
-;
+module.exports = EspLogger;

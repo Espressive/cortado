@@ -1,0 +1,27 @@
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread"
+    ],
+    "env": {
+      "development" : {
+        "plugins": [
+          "transform-object-rest-spread",
+          "transform-class-properties"
+        ]
+      },
+      "production": {
+        "plugins": [
+          "transform-object-rest-spread",
+          [
+            {
+              "mode": "remove",
+              "ignoreFilenames": ["node_modules"]
+            }
+          ]
+        ]
+      }
+    }
+  }
+  
