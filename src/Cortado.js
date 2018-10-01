@@ -1,4 +1,4 @@
-class EspLogger {
+class Cortado {
   silent = !localStorage.getItem('turnLoggerOn');
   isProduction = process.env.NODE_ENV === 'production';
   timers = {};

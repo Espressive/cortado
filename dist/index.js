@@ -56,13 +56,13 @@ function _objectSpread(target) {
   return target;
 }
 
-var EspLogger =
+var Cortado =
 /*#__PURE__*/
 function () {
-  function EspLogger() {
+  function Cortado() {
     var _this = this;
 
-    _classCallCheck(this, EspLogger);
+    _classCallCheck(this, Cortado);
 
     this.silent = !localStorage.getItem('turnLoggerOn');
     this.isProduction = process.env.NODE_ENV === 'production';
@@ -210,7 +210,7 @@ function () {
     this.shorthandFactory();
   }
 
-  _createClass(EspLogger, [{
+  _createClass(Cortado, [{
     key: "on",
     // Turn Logger on and off
     value: function on() {
@@ -236,7 +236,7 @@ function () {
 
   }]);
 
-  return EspLogger;
+  return Cortado;
 }();
 
 module.exports = EspLogger;

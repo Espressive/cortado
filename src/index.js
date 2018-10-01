@@ -1,1 +1,1 @@
-export {default} from './EspLogger';
+export {default} from './Cortado';
