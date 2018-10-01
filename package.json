@@ -2,7 +2,7 @@
   "name": "esp-util-logging",
   "version": "1.0.0",
   "description": "Logging utility for debugging the app",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": "Espressive",
   "license": "MIT",
   "scripts": {
