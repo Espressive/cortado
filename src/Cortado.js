@@ -148,4 +148,4 @@ class Cortado {
 
 }
 
-export default EspLogger;
+export default Cortado;
