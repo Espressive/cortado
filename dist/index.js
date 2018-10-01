@@ -239,4 +239,4 @@ function () {
   return Cortado;
 }();
 
-module.exports = EspLogger;
+module.exports = Cortado;
