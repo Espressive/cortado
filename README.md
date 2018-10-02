@@ -7,41 +7,41 @@ This logging tool is here to provide us with better debugging, especially when d
 
 ## Installation
 
-No installation steps are required when using this tool. The `logger` is ready in the global scope for it to use anywhere in the app.
+No installation steps are required when using this tool. The logger is ready in the global scope for it to use anywhere in the app.
 
 ## Usage
 
-By default, our `logger` will not log messages unless specified otherwise using `logger.on()` (more details below).
+By default, our logger will not log messages unless specified otherwise using `cortado.on()` (more details below).
 
-To start logging messages to the console you use the `logger` object in the global scope:
+To start logging messages to the console you use the logger object in the global scope:
 
 ```js
-logger.log();
+cortado.log();
 /*
 Output:
 [Global] No message specified
 */
 
-logger.log('This is a sample message')
+cortado.log('This is a sample message')
 /*
 Output:
 [Global] This is a sample message
 */
 
-logger.log({message: 'This is another sample message'})
+cortado.log({message: 'This is another sample message'})
 /*
 Output:
 [Global] This is another sample message
 */
 ```
 
-Namespace is defaulted to `Global` if no label is especified to the logger.
+Namespace is defaulted to `Global` if no label is especified to the cortado.
 
 To namespace your logs you have to pass a string to the `label` property of the object you send. Passing an object to the logger provides the message with more information.
 
 
 ```js
-logger.log({
+cortado.log({
   type: 'debug',
   label: 'MyComponent',
   message: 'This is a sample message'
@@ -69,16 +69,16 @@ We currently have these types in the logger:
 There's also available shorthands for all of these types, to reduce the typing needed to log a message:
 
 ```js
-logger.method({'This logs a method message'});
-logger.xhr({'This logs a xhr message'});
+cortado.method({'This logs a method message'});
+cortado.xhr({'This logs a xhr message'});
 ```
 
-Follow the same syntax for the rest of the types. If `logger.log()` uis used and no type is specified it'll default to `debug`.
+Follow the same syntax for the rest of the types. If `cortado.log()` uis used and no type is specified it'll default to `debug`.
 
 
 ## Utils
 
-The `logger` has a few util functions available to toggle the messages it shows.
+The logger has a few util functions available to toggle the messages it shows.
 
 #### .on()
 Turns logger silent mode off, causing it to start logging messages.
@@ -99,12 +99,12 @@ The logger has a timer utility you can turn on, restart, or delete for each name
 When logging a message, if you specify `trace: true`.  A new timer will automatically get started.
 
 ```js
-logger.debug({
+cortado.debug({
   label: 'MyComponent',
   message: 'This is a sample message',
   trace: true});
 
-  logger.debug({
+  cortado.debug({
   label: 'MyComponent',
   message: 'This is a subsequent message',
   trace: true});
@@ -124,7 +124,7 @@ Adds a new timer for the specified namespace.
 Prints the current time for the specified namespace:
 
 ```js
-logger.getTimer('MyComponent')
+cortado.getTimer('MyComponent')
 /*
  [MyComponent] Current timer: 152323ms 
 */
@@ -144,10 +144,10 @@ Filter arrays are public in case you need to do more complex manipulations.
 Adds a filter for namespace:
 
 ```js
-logger.addNamespaceFilter('Component B');
+cortado.addNamespaceFilter('Component B');
 
-logger.debug({label:'Component A', message: 'sample message'});
-logger.debug({label:'Component B', message: 'sample message'});
+cortado.debug({label:'Component A', message: 'sample message'});
+cortado.debug({label:'Component B', message: 'sample message'});
 
 /*
 Output will only log Component B log:
@@ -160,12 +160,12 @@ Output will only log Component B log:
 Works similar to namespace filter:
 
 ```js
-logger.addTypeFilter('xhr');
+cortado.addTypeFilter('xhr');
 
-logger.debug('debug message');
-logger.method('method message');
-logger.xhr('xhr message');
-logger.ws('ws message');
+cortado.debug('debug message');
+cortado.method('method message');
+cortado.xhr('xhr message');
+cortado.ws('ws message');
 
 
 /*
@@ -183,10 +183,10 @@ Pretty obvious :)
 
 
 ## Production
-The `logger` can accept a `private` property to prevent a message from displaying in production environments, even if `.showAll()` has been called.
+The logger can accept a `private` property to prevent a message from displaying in production environments, even if `.showAll()` has been called.
 
 ```js
-logger.xhr({
+cortado.xhr({
   message: 'This is a secret message',
   private: true
 })
