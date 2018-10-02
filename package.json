@@ -1,6 +1,6 @@
 {
   "name": "esp-util-logging",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Logging utility for debugging the app",
   "main": "dist/index.js",
   "author": "Espressive",
